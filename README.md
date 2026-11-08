@@ -7,6 +7,8 @@
 ![LangGraph](https://img.shields.io/badge/LangGraph-1.x-1c3c3c)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+**See it live:** [PR #1](https://github.com/AbdulSohail018/reviewpilot/pull/1) adds order search and refunds with three planted bugs. ReviewPilot leaves an inline comment on each one and lists the comment it dropped during verification.
+
 ![Benchmark](evals/results/mock/chart.png)
 
 ## Why
