@@ -35,7 +35,7 @@
     "dropped_grounding": 0,
     "dropped_skeptic": 0,
     "tool_calls": 0,
-    "tokens": 903,
+    "tokens": 899,
     "cost_usd": 0.0,
     "comments": [
       "bookshelf/storage.py:16 [null-dereference] Possible None dereference",
@@ -542,7 +542,7 @@
     "dropped_grounding": 0,
     "dropped_skeptic": 0,
     "tool_calls": 1,
-    "tokens": 1729,
+    "tokens": 1725,
     "cost_usd": 0.0,
     "comments": [
       "bookshelf/storage.py:16 [null-dereference] Possible None dereference",
@@ -1036,7 +1036,7 @@
     "dropped_grounding": 0,
     "dropped_skeptic": 0,
     "tool_calls": 1,
-    "tokens": 1729,
+    "tokens": 1725,
     "cost_usd": 0.0,
     "comments": [
       "bookshelf/storage.py:16 [null-dereference] Possible None dereference",
@@ -1520,7 +1520,7 @@
     "dropped_grounding": 0,
     "dropped_skeptic": 1,
     "tool_calls": 1,
-    "tokens": 2467,
+    "tokens": 2461,
     "cost_usd": 0.0,
     "comments": [
       "bookshelf/storage.py:17 [swallowed-exception] Errors silently ignored"

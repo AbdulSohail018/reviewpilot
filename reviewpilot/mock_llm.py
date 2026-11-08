@@ -85,7 +85,7 @@ def rule_findings(lines: list[tuple[str, int, str, bool]], removed: list[str]) -
         if re.match(r"\s*except(\s+Exception)?\s*:\s*$", code) and nxt == "pass":
             found.append(dict(path=path, line=n, severity="medium", category="swallowed-exception",
                               title="Errors silently ignored",
-                              explanation="Every database error is discarded, so a failed save looks like a "
+                              explanation="Every error here is discarded, so a failure looks like a "
                                           "success. Log and re-raise, or catch the specific error you expect.",
                               evidence=code.strip()))
     # A removed guard makes an unchanged division line unsafe, so context lines are checked too.
