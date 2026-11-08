@@ -61,6 +61,15 @@ def test_tools_are_confined_and_strip_secrets(tmp_path, monkeypatch):
     assert "should-not-leak" not in tools["run_tests"].invoke({})
 
 
+def test_run_tests_survives_git_config_env(tmp_path, monkeypatch):
+    # Stripping only GIT_CONFIG_KEY_0 (it contains "KEY") would leave COUNT/VALUE behind and break git.
+    monkeypatch.setenv("GIT_CONFIG_COUNT", "1")
+    monkeypatch.setenv("GIT_CONFIG_KEY_0", "http.extraheader")
+    monkeypatch.setenv("GIT_CONFIG_VALUE_0", "Authorization: secret")
+    tools = {t.name: t for t in make_tools(tmp_path, test_command="git --version")}
+    assert tools["run_tests"].invoke({}).startswith("PASSED")
+
+
 @pytest.mark.parametrize("cid", ["b01", "b03", "b07"])
 def test_full_pipeline_finds_diff_bugs(cid):
     row = run_case(case(cid), "full", "mock", None)

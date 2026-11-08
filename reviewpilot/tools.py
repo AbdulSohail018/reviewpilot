@@ -72,8 +72,11 @@ def make_tools(repo: Path, test_command: str | None = None, lint_command: str | 
 
     def _run(command: str) -> str:
         # Commands come from the repo's .reviewpilot.yml, never from the model, and run without secrets.
+        # GIT_CONFIG_KEY_n/VALUE_n/COUNT travel together (and values can hold auth headers), so drop them all
+        # rather than leaving git with a half-stripped, invalid config.
         env = {k: v for k, v in os.environ.items()
-               if not any(s in k.upper() for s in ("KEY", "TOKEN", "SECRET", "PASSWORD"))}
+               if not any(s in k.upper() for s in ("KEY", "TOKEN", "SECRET", "PASSWORD"))
+               and not k.upper().startswith("GIT_CONFIG_")}
         try:
             proc = subprocess.run(shlex.split(command), cwd=repo, capture_output=True, text=True,
                                   timeout=timeout, env=env)
