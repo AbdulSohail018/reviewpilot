@@ -1,0 +1,30 @@
+name: ReviewPilot
+
+# ReviewPilot reviews its own pull requests. Without an ANTHROPIC_API_KEY secret it falls back to the
+# offline mock reviewer and says so in the review.
+# Uses `pull_request`, not `pull_request_target`: the configured test command runs PR code, so it must never
+# run with write access or secrets from a fork.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install project dependencies (so the reviewer can run the tests)
+        run: pip install -q -r requirements-dev.txt
+      - uses: ./
+        with:
+          provider: anthropic
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}

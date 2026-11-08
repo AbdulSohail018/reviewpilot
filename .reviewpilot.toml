@@ -1,0 +1,4 @@
+# ReviewPilot settings for reviewing this repository.
+test_command = "python -m pytest -q -p no:cacheprovider"
+lint_command = "ruff check ."
+ignore_paths = ["evals/results/*", "*.png"]

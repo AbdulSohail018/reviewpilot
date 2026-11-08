@@ -1,0 +1,19 @@
+[project]
+name = "reviewpilot"
+version = "1.0.0"
+description = "AI pull-request reviewer built on LangGraph, with grounded and verified findings."
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Abdul Sohail" }]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["evals/sample_project"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E501"]

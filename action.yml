@@ -1,0 +1,51 @@
+name: ReviewPilot
+description: AI pull-request review on LangGraph. Every comment is grounded in quoted code and checked by a skeptic pass before it is posted.
+author: Abdul Sohail
+branding:
+  icon: check-circle
+  color: blue
+
+inputs:
+  provider:
+    description: anthropic, openai or mock (offline, no key)
+    default: anthropic
+  model:
+    description: Model name (defaults to the provider's default)
+    default: ""
+  preset:
+    description: single_pass, tools, tools_grounded or full
+    default: full
+  fail-on-findings:
+    description: Fail the check when high or critical issues are found
+    default: "false"
+  anthropic-api-key:
+    description: Anthropic API key
+    default: ""
+  openai-api-key:
+    description: OpenAI API key
+    default: ""
+  github-token:
+    description: Token used to read the PR and post the review
+    default: ${{ github.token }}
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - name: Install ReviewPilot
+      shell: bash
+      run: pip install -q -r "${{ github.action_path }}/requirements.txt"
+    - name: Review pull request
+      shell: bash
+      env:
+        PYTHONPATH: ${{ github.action_path }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        ANTHROPIC_API_KEY: ${{ inputs.anthropic-api-key }}
+        OPENAI_API_KEY: ${{ inputs.openai-api-key }}
+      run: |
+        args=(github --repo "$GITHUB_WORKSPACE" --provider "${{ inputs.provider }}" --preset "${{ inputs.preset }}")
+        if [ -n "${{ inputs.model }}" ]; then args+=(--model "${{ inputs.model }}"); fi
+        if [ "${{ inputs.fail-on-findings }}" = "true" ]; then args+=(--fail-on-findings); fi
+        python -m reviewpilot "${args[@]}"

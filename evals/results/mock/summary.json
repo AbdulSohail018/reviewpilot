@@ -1,0 +1,70 @@
+{
+  "single_pass": {
+    "precision": 0.151,
+    "recall": 0.444,
+    "f1": 0.225,
+    "comments": 53,
+    "false_positives": 45,
+    "clean_prs_with_false_alarms": "6/6",
+    "recall_by_kind": {
+      "diff": "8/10",
+      "tests": "0/5",
+      "context": "0/2",
+      "reasoning": "0/1"
+    },
+    "avg_tool_calls": 0.0,
+    "avg_tokens": 675,
+    "total_cost_usd": 0.0
+  },
+  "tools": {
+    "precision": 0.432,
+    "recall": 0.889,
+    "f1": 0.582,
+    "comments": 37,
+    "false_positives": 21,
+    "clean_prs_with_false_alarms": "6/6",
+    "recall_by_kind": {
+      "diff": "9/10",
+      "tests": "5/5",
+      "context": "2/2",
+      "reasoning": "0/1"
+    },
+    "avg_tool_calls": 1.1,
+    "avg_tokens": 1636,
+    "total_cost_usd": 0.0
+  },
+  "tools_grounded": {
+    "precision": 0.571,
+    "recall": 0.889,
+    "f1": 0.696,
+    "comments": 28,
+    "false_positives": 12,
+    "clean_prs_with_false_alarms": "6/6",
+    "recall_by_kind": {
+      "diff": "9/10",
+      "tests": "5/5",
+      "context": "2/2",
+      "reasoning": "0/1"
+    },
+    "avg_tool_calls": 1.1,
+    "avg_tokens": 1636,
+    "total_cost_usd": 0.0
+  },
+  "full": {
+    "precision": 1.0,
+    "recall": 0.889,
+    "f1": 0.941,
+    "comments": 16,
+    "false_positives": 0,
+    "clean_prs_with_false_alarms": "0/6",
+    "recall_by_kind": {
+      "diff": "9/10",
+      "tests": "5/5",
+      "context": "2/2",
+      "reasoning": "0/1"
+    },
+    "avg_tool_calls": 1.1,
+    "avg_tokens": 2160,
+    "total_cost_usd": 0.0
+  }
+}
